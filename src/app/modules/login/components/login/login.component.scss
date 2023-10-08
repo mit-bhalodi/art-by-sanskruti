@@ -7,6 +7,12 @@
     margin: 0 40px;
 }
 
+.your-orders {
+    margin: 0 40px;
+    margin-top: 12px;
+    font-size: 20px;
+}
+
 .user-name {
     font-family: "DM Serif Text", serif;
     font-size: 24px;
@@ -46,4 +52,46 @@
 .guest-message {
     font-family: "DM Serif Text", serif;
     font-size: 24px;
+}
+
+.order-listing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 40px;
+
+    .card {
+        margin-right: 24px;
+        margin-bottom: 24px;
+
+        .card-img-top {
+            max-height: 100px;
+            max-width: 200px;
+        }
+
+        .order-id {
+            display: flex;
+
+            .status {
+                padding: 2px 4px;
+                color: white;
+                font-size: 10px;
+                margin-left: 8px;
+                border-radius: 8px;
+
+                &.success {
+                    background-color: rgb(96, 224, 96);
+                }
+
+                &.failed {
+                    background-color: rgb(254, 53, 53);
+                }
+
+                &.peding {
+                    background-color: rgb(255, 196, 34);
+                }
+            }
+        }
+    }
+
 }

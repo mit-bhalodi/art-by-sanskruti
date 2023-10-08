@@ -10,3 +10,12 @@ ng-template(#authenticated='')
 	div.authenticated(*ngIf='auth.user$ | async as user')
 		h3.user-name.mt-4 Howdy, {{ user.displayName }}
 		button.logout-btn((click)='auth.signOut()') Logout
+	h3.your-orders Your orders
+	div.order-listing.my-4
+		.card(style='width: 10rem;', *ngFor="let a of [1,2,3,4,5,6,7,8,9,10]")
+			img.card-img-top(src='https://picsum.photos/200/300', alt='Sample image')
+			.card-body
+				p.order-id.small.text-muted #9284821
+					span.status.success Paid
+				h5.mt-1 Art title
+				p.small.text-muted.mt-1 22/11/2023
