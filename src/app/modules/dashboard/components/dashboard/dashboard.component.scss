@@ -1,0 +1,41 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.dashboard_container {
+    height: 100%;
+
+    .content-wrapper {
+        margin: 0 60px;
+
+        .centered-info-div {
+            padding: 120px 0;
+            margin: 40px 0;
+            text-align: center;
+
+            .small-text {
+                font-family: "DM Serif Text", serif;
+                font-size: 20px;
+            }
+
+            .big-text {
+                font-family: "DM Serif Text", serif;
+                margin-top: 20px;
+                font-size: 100px;
+                line-height: 100px;
+                letter-spacing: 0.5;
+
+                .italic {
+                    font-style: italic;
+                    color: rgb(168, 220, 168);
+                }
+            }
+        }
+    }
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
