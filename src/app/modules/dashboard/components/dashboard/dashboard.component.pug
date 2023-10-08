@@ -1,22 +1,4 @@
 div.dashboard_container
-    nav.navbar.navbar-expand-lg.p-4.border-bottom
-        .container-fluid
-            a.navbar-brand.flex(href='#') Art by Sanskruti
-            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarScroll' aria-controls='navbarScroll' aria-expanded='false' aria-label='Toggle navigation')
-                span.navbar-toggler-icon
-            #navbarScroll.collapse.navbar-collapse.flex-grow-0
-                ul.navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll(style='--bs-scroll-height: 100px;')
-                    li.nav-item.me-4
-                        a.nav-link.active(aria-current='page' href='#') Store
-                    li.nav-item.me-4
-                        a.nav-link.active(aria-current='page', (click)="scroll(about_me)") About me
-                    li.nav-item.me-4
-                        a.nav-link.active(aria-current='page', href='#') Contact
-                    //- li.nav-item
-                    //-     a.nav-link(href='#') Login
-                    li.nav-item
-                        a.nav-link((click)="auth.signOut()") Logout
-
     div.content-wrapper
         .centered-info-div
             .small-text Hello, I am Sanskruti
@@ -29,3 +11,6 @@ div.dashboard_container
         
         .about-me#about_me(#about_me='')
             div this is about me
+
+        .my-services#my_services(#my_services='')
+            div My services

@@ -1,18 +1,5 @@
 
 <div class="dashboard_container">
-  <nav class="navbar navbar-expand-lg p-4 border-bottom">
-    <div class="container-fluid"><a class="navbar-brand flex" href="#">Art by Sanskruti</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse flex-grow-0" id="navbarScroll">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <li class="nav-item me-4"><a class="nav-link active" aria-current="page" href="#">Store</a></li>
-          <li class="nav-item me-4"><a class="nav-link active" aria-current="page" (click)="scroll(about_me)">About me</a></li>
-          <li class="nav-item me-4"><a class="nav-link active" aria-current="page" href="#">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" (click)="auth.signOut()">Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   <div class="content-wrapper">
     <div class="centered-info-div">
       <div class="small-text">Hello, I am Sanskruti</div>
@@ -23,6 +10,9 @@
     </div>
     <div class="about-me" id="about_me" #about_me="">
       <div>this is about me</div>
+    </div>
+    <div class="my-services" id="my_services" #my_services="">
+      <div>My services</div>
     </div>
   </div>
 </div>

@@ -1,12 +1,12 @@
 div(*ngIf="auth.user$ | async; then authenticated else guest")
 
 ng-template(#guest='')
-	h3 Howdy, GUEST
-	button((click)='auth.googleSignin()')
-		i.fa.fa-google
-		span Login
+	div.not-authenticated
+		h3.guest-message Howdy, GUEST 👋🏻
+		h4.guest-message Login to see the magic ✌🏻
+		button.my-4(type="button", class="login-with-google-btn", (click)='auth.googleSignin()') Sign in with Google
 
 ng-template(#authenticated='')
-	div(*ngIf='auth.user$ | async as user')
-		h3 Howdy, {{ user.displayName }}
-		button((click)='auth.signOut()') Logout
+	div.authenticated(*ngIf='auth.user$ | async as user')
+		h3.user-name.mt-4 Howdy, {{ user.displayName }}
+		button.logout-btn((click)='auth.signOut()') Logout

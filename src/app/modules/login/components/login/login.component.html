@@ -1,12 +1,15 @@
 
 <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
 <ng-template #guest="">
-  <h3>Howdy, GUEST</h3>
-  <button (click)="auth.googleSignin()"><i class="fa fa-google"></i><span>Login</span></button>
+  <div class="not-authenticated">
+    <h3 class="guest-message">Howdy, GUEST 👋🏻</h3>
+    <h4 class="guest-message">Login to see the magic ✌🏻</h4>
+    <button class="my-4 login-with-google-btn" type="button" (click)="auth.googleSignin()">Sign in with Google</button>
+  </div>
 </ng-template>
 <ng-template #authenticated="">
-  <div *ngIf="auth.user$ | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
-    <button (click)="auth.signOut()">Logout</button>
+  <div class="authenticated" *ngIf="auth.user$ | async as user">
+    <h3 class="user-name mt-4">Howdy, {{ user.displayName }}</h3>
+    <button class="logout-btn" (click)="auth.signOut()">Logout</button>
   </div>
 </ng-template>
