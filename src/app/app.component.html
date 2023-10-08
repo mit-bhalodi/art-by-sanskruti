@@ -1,12 +1,13 @@
 
 <div class="dashboard_container">
   <nav class="navbar navbar-expand-lg p-md-4 p-sm-3 border-bottom">
-    <div class="container-fluid"><a class="navbar-brand flex nav-logo" href="/home">Art by <span class="logo-name-highlight">Sanskruti</span></a>
+    <div class="container-fluid"><a class="navbar-brand flex nav-logo cursor pointer" (click)="goToHome()">Art by <span class="logo-name-highlight">Sanskruti</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse flex-grow-0" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <li class="nav-item me-4"><a class="nav-link active" aria-current="page" (click)="goToStore()">My Store</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" (click)="goToLogin()">{{user ? user.displayName : 'Login'}}</a></li>
+          <li class="nav-item me-4"><a class="nav-link active cursor pointer" aria-current="page" (click)="goToHome()">Home</a></li>
+          <li class="nav-item me-4"><a class="nav-link active cursor pointer" aria-current="page" (click)="goToStore()">My Store</a></li>
+          <li class="nav-item"><a class="nav-link active cursor pointer" aria-current="page" (click)="goToLogin()">{{user ? user.displayName : 'Login'}}</a></li>
         </ul>
       </div>
     </div>

@@ -31,6 +31,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.router.navigate(['/store']);
     }
 
+    public goToHome() {
+        this.router.navigate(['/home']);
+    }
+
     public scroll(el: HTMLElement) {
         el.scrollIntoView();
     }
