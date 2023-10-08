@@ -39,3 +39,16 @@
 .navbar-brand {
     font-weight: 600;
 }
+
+@media screen and (max-width : 974px) {
+    .dashboard_container {
+        .content-wrapper {
+            .centered-info-div {
+                .big-text {
+                    font-size: 36px;
+                    line-height: 36px;
+                }
+            }
+        }
+    }
+}
