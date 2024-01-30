@@ -11,25 +11,18 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home',
         pathMatch: 'full',
-        // data: { authGuardPipe: redirectUnauthorizedToLogin },
     },
     {
         path: 'home',
         loadChildren: () => import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
-        // canActivate: [AngularFireAuthGuard],
-        // data: { authGuardPipe: redirectUnauthorizedToLogin },
     },
     {
         path: 'store',
         loadChildren: () => import('./modules/store/store.module').then((m) => m.StoreModule),
-        // canActivate: [AngularFireAuthGuard],
-        // data: { authGuardPipe: redirectUnauthorizedToLogin },
     },
     {
-        path: 'me',
-        loadChildren: () => import('./modules/login/login.module').then((m) => m.LoginModule),
-        // canActivate: [AngularFireAuthGuard],
-        // data: { authGuardPipe: redirectLoggedInToItems },
+        path: 'auth',
+        loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
     },
     { path: '**', redirectTo: '/home' },
 ];

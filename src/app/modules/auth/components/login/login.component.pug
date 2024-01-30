@@ -1,0 +1,32 @@
+.login-form([formGroup]="loginForm")
+	form
+		h1 Please Sign In
+		.form-group.mt-2
+			label(for='exampleInputEmail1') Email
+			input#exampleInputEmail1.form-control.mt-1(formControlName="email", type='email', aria-describedby='emailHelp', placeholder='Enter email')
+		.form-group.mt-2
+			label(for='exampleInputPassword1') Password
+			input#exampleInputPassword1.form-control.mt-1(formControlName="password", type='password', placeholder='Password')
+		button.btn.btn-primary.mt-2(type='submit') Login
+
+//- div(*ngIf="auth.user$ | async; then authenticated else guest")
+
+//- ng-template(#guest='')
+//- 	div.not-authenticated
+//- 		h3.guest-message Howdy, GUEST 👋🏻
+//- 		h4.guest-message Login to see the magic ✌🏻
+//- 		button.my-4(type="button", class="login-with-google-btn", (click)='auth.googleSignin()') Sign in with Google
+
+//- ng-template(#authenticated='')
+//- 	div.authenticated(*ngIf='auth.user$ | async as user')
+//- 		h3.user-name.mt-4 Howdy, {{ user.displayName }}
+//- 		button.logout-btn((click)='auth.signOut()') Logout
+//- 	h3.your-orders Your orders
+//- 	div.order-listing.my-4
+//- 		.card( *ngFor="let a of [1,2,3,4,5,6,7,8,9,10]")
+//- 			img.card-img-top(src='https://picsum.photos/200/300', alt='Sample image')
+//- 			.card-body
+//- 				p.order-id.small.text-muted #9284821
+//- 					span.status.success Paid
+//- 				h5.mt-1 Art title
+//- 				p.small.text-muted.mt-1 22/11/2023

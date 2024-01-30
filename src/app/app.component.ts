@@ -16,15 +16,18 @@ export class AppComponent implements OnInit, OnDestroy {
     constructor(public auth: AuthService, private router: Router) {}
 
     ngOnInit(): void {
-        const userSub = this.auth.loggedInUser$.subscribe((user) => {
-            this.user = user;
-        });
-
-        this.allSubList.add(userSub);
+        // const userSub = this.auth.loggedInUser$.subscribe((user) => {
+        //     this.user = user;
+        // });
+        // this.allSubList.add(userSub);
     }
 
     public goToLogin() {
-        this.router.navigate(['/me']);
+        this.router.navigate(['auth/login']);
+    }
+
+    public goToRegister() {
+        this.router.navigate(['auth/register']);
     }
 
     public goToStore() {

@@ -11,6 +11,8 @@ div.dashboard_container
                         a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToHome()") Home
                     li.nav-item.me-4
                         a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToStore()") My Store
-                    li.nav-item
-                        a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToLogin()") {{user ? user.displayName : 'Login'}}
+                    li.nav-item.me-4
+                        a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToLogin()") Login
+                    li.nav-item.me-4
+                        a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToRegister()") Register
     router-outlet
