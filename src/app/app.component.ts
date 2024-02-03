@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './services/auth-service/auth.service';
 import { Router } from '@angular/router';
-import { Subscription, take } from 'rxjs';
+import { Observable, Subscription, take } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -13,13 +13,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
     private allSubList = new Subscription();
 
-    constructor(public auth: AuthService, private router: Router) {}
+    public isAuthenticated$!: Observable<any>;
+
+    constructor(public authService: AuthService, private router: Router) {}
 
     ngOnInit(): void {
         // const userSub = this.auth.loggedInUser$.subscribe((user) => {
         //     this.user = user;
         // });
         // this.allSubList.add(userSub);
+        this.isAuthenticated$ = this.authService.isAuthenticated$;
     }
 
     public goToLogin() {
@@ -36,6 +39,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public goToHome() {
         this.router.navigate(['/home']);
+    }
+
+    public logOut() {
+        this.authService
+            .logOutUser()
+            .pipe(take(1))
+            .subscribe(() => {
+                this.router.navigate(['/auth/login']);
+            });
     }
 
     public scroll(el: HTMLElement) {

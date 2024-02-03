@@ -4,7 +4,7 @@ import { StoreComponent } from './components/store/store.component';
 import { StoreRoutingModule } from './store-routing.module';
 
 @NgModule({
-  declarations: [StoreComponent],
-  imports: [CommonModule, StoreRoutingModule],
+    declarations: [StoreComponent],
+    imports: [CommonModule, StoreRoutingModule],
 })
 export class StoreModule {}

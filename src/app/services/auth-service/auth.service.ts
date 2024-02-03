@@ -1,63 +1,109 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { AngularFireAuth } from '@angular/fire/compat/auth';
-// import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-// import { Router } from '@angular/router';
-// import firebase from 'firebase/compat/app';
-import { Observable, Subject, map, of, switchMap } from 'rxjs';
-import { User } from 'src/app/interfaces/user.model';
+import { Router } from '@angular/router';
+import { BehaviorSubject, map, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    public user$!: Observable<User>;
+    private accessToken = '';
 
-    // private loggedInUserSubject = new Subject();
-    // public loggedInUser$ = this.loggedInUserSubject.asObservable();
+    private isAuthenticated = new BehaviorSubject(false);
 
-    // private afAuth: AngularFireAuth, private afs: AngularFirestore,
-    constructor(private http: HttpClient) {
-        // this.user$ = this.afAuth.authState.pipe(
-        //     switchMap((user) => {
-        //         if (user) {
-        //             this.loggedInUserSubject.next(user);
-        //             return this.afs.doc<any>(`users/${user.uid}`).valueChanges();
-        //         } else {
-        //             this.loggedInUserSubject.next(null);
-        //             return of(null);
-        //         }
-        //     })
-        // );
+    public isAuthenticated$ = this.isAuthenticated.asObservable();
+
+    public get getAccessToken() {
+        return this.accessToken;
     }
 
-    // private updateUserData(user: any) {
-    //     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    //     const data = {
-    //         uid: user.uid,
-    //         email: user.email,
-    //         displayName: user.displayName,
-    //         photoURL: user.photoURL,
-    //     };
-    //     return userRef.set(data, { merge: true });
-    // }
+    private _userSubject = new BehaviorSubject<SocialUser | null>(null);
 
-    // async googleSignin() {
-    //     const provider = new firebase.auth.GoogleAuthProvider();
-    //     const credential = await this.afAuth.signInWithPopup(provider);
-    //     return this.updateUserData(credential.user);
-    // }
+    public user$ = this._userSubject.asObservable();
 
-    // async signOut() {
-    //     await this.afAuth.signOut();
-    //     this.loggedInUserSubject.next(null);
-    // }
+    constructor(private http: HttpClient, private socialAuthService: SocialAuthService, private router: Router) {
+        this.socialAuthService.authState.subscribe((user) => {
+            this._userSubject.next(user);
+            this.googleLogin({ 'token': user.idToken }).subscribe((response) => {
+                if (response.success === true) {
+                    this.router.navigate(['/home']);
+                } else {
+                    this.router.navigate(['/auth/login']);
+                }
+            });
+        });
+    }
 
     public registerUser(sendJSON: any) {
         return this.http.post<any>(`${environment.api}/register`, sendJSON).pipe(
             switchMap((response) => {
                 return of(response);
+            })
+        );
+    }
+
+    public googleLogin(sendJSON: any) {
+        return this.http.post<any>(`${environment.api}/google-auth`, sendJSON, { withCredentials: true }).pipe(
+            switchMap((response) => {
+                if (response.success === true) {
+                    this.isAuthenticated.next(true);
+                } else {
+                    this.isAuthenticated.next(false);
+                }
+                this.accessToken = response.token;
+                return of(response);
+            })
+        );
+    }
+
+    public loginUser(sendJSON: any) {
+        return this.http.post<any>(`${environment.api}/login`, sendJSON, { withCredentials: true }).pipe(
+            switchMap((response) => {
+                if (response.success === true) {
+                    this.isAuthenticated.next(true);
+                } else {
+                    this.isAuthenticated.next(false);
+                }
+                this.accessToken = response.token;
+                return of(response);
+            })
+        );
+    }
+
+    public logOutUser() {
+        return this.http.post<any>(`${environment.api}/logout`, {}, { withCredentials: true }).pipe(
+            map((response) => {
+                this.isAuthenticated.next(false);
+                this.accessToken = '';
+                return response;
+            })
+        );
+    }
+
+    public getUser() {
+        return this.http.get<any>(`${environment.api}/user`).pipe(
+            switchMap((response) => {
+                if (response.status === true) {
+                    this.isAuthenticated.next(true);
+                } else {
+                    this.isAuthenticated.next(false);
+                }
+                return of(response);
+            })
+        );
+    }
+
+    public getRefreshToken() {
+        return this.http.post<any>(`${environment.api}/refresh`, {}, { withCredentials: true }).pipe(
+            switchMap((response: any) => {
+                this.accessToken = response.token;
+                if (response.token) {
+                    return of({ 'success': true });
+                } else {
+                    return of({ 'success': false });
+                }
             })
         );
     }

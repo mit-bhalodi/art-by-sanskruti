@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {}
+export class DashboardComponent implements OnInit {
+    constructor(private authService: AuthService) {}
+
+    ngOnInit(): void {
+        this.authService.getUser().pipe(take(1)).subscribe();
+    }
+}

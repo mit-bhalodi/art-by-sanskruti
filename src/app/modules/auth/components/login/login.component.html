@@ -10,6 +10,8 @@
       <label for="exampleInputPassword1">Password</label>
       <input class="form-control mt-1" id="exampleInputPassword1" formControlName="password" type="password" placeholder="Password"/>
     </div>
-    <button class="btn btn-primary mt-2" type="submit">Login</button>
+    <button class="btn btn-primary mt-2" type="submit" (click)="login()">Login</button>
+    <button class="btn btn-primary mt-2 mx-2" type="submit" (click)="forgotPassword()">Reset password</button>
   </form>
+  <asl-google-signin-button class="margin mt-2" type="standard" size="large" width="300" (click)="singInWithGoogle()"></asl-google-signin-button>
 </div>

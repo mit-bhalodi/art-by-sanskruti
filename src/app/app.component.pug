@@ -11,8 +11,13 @@ div.dashboard_container
                         a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToHome()") Home
                     li.nav-item.me-4
                         a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToStore()") My Store
-                    li.nav-item.me-4
-                        a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToLogin()") Login
-                    li.nav-item.me-4
-                        a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToRegister()") Register
+                    ng-container(*ngIf="!(isAuthenticated$ | async)")
+                        li.nav-item.me-4
+                            a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToLogin()") Login
+                        li.nav-item.me-4
+                            a.nav-link.active.cursor.pointer(aria-current='page', (click)="goToRegister()") Register
+                    ng-container(*ngIf="(isAuthenticated$ | async)")
+                        li.nav-item.me-4
+                            a.nav-link.active.cursor.pointer(aria-current='page', (click)="logOut()") Logout
+                        
     router-outlet
