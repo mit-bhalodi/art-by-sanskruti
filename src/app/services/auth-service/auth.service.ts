@@ -2,7 +2,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, of, switchMap } from 'rxjs';
+import { BehaviorSubject, map, of, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -15,6 +15,10 @@ export class AuthService {
 
     public isAuthenticated$ = this.isAuthenticated.asObservable();
 
+    private isSuperUser = new BehaviorSubject(false);
+
+    public isSuperUser$ = this.isSuperUser.asObservable();
+
     public get getAccessToken() {
         return this.accessToken;
     }
@@ -24,7 +28,7 @@ export class AuthService {
     public user$ = this._userSubject.asObservable();
 
     constructor(private http: HttpClient, private socialAuthService: SocialAuthService, private router: Router) {
-        this.socialAuthService.authState.subscribe((user) => {
+        this.socialAuthService.authState.pipe().subscribe((user) => {
             this._userSubject.next(user);
             this.googleLogin({ 'token': user.idToken }).subscribe((response) => {
                 if (response.success === true) {
@@ -86,6 +90,7 @@ export class AuthService {
         return this.http.get<any>(`${environment.api}/user`).pipe(
             switchMap((response) => {
                 if (response.status === true) {
+                    this.isSuperUser.next(true);
                     this.isAuthenticated.next(true);
                 } else {
                     this.isAuthenticated.next(false);

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
+import * as $ from 'jquery';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AddProductComponent } from '../add-product/add-product.component';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
     selector: 'app-store',
@@ -6,7 +12,54 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./store.component.scss'],
 })
 export class StoreComponent implements OnInit {
-    constructor() {}
+    constructor(
+        private authService: AuthService,
+        private matDialog: MatDialog,
+        private productService: ProductService
+    ) {}
 
-    ngOnInit(): void {}
+    public isSuperUser = false;
+
+    public products: any = [];
+
+    ngOnInit(): void {
+        this.authService.isSuperUser$.pipe(take(1)).subscribe((isSuperUser) => {
+            this.isSuperUser = isSuperUser;
+            if (this.isSuperUser) {
+                this.getProductList();
+            }
+        });
+    }
+
+    addProduct() {
+        const matDialogRef: MatDialogRef<AddProductComponent> = this.matDialog.open(AddProductComponent, {
+            disableClose: false,
+            autoFocus: false,
+            panelClass: 'fix-max-width-dbox-712',
+        });
+
+        matDialogRef
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe((response) => {
+                if (response) {
+                    this.productService
+                        .addProduct(response)
+                        .pipe(take(1))
+                        .subscribe((response) => {
+                            console.log(response);
+                            this.getProductList();
+                        });
+                }
+            });
+    }
+
+    getProductList() {
+        this.productService
+            .getProducts()
+            .pipe(take(1))
+            .subscribe((response) => {
+                this.products = response;
+            });
+    }
 }

@@ -1,10 +1,14 @@
 div.store-container.my-5
     div.section-title Oil painings
+    
+    button.btn.btn-primary(*ngIf="isSuperUser", type="button", (click)="addProduct()") Add product
+    
     div.product-wrapper.my-4
-        .card(style='width: 20rem;', *ngFor="let a of [1,2,3,4,5,6,7,8,9,10]")
-            img.card-img-top(src='https://picsum.photos/200/300', alt='Sample image')
+        .card(style='width: 20rem;', *ngFor="let product of products")
+            //- img.card-img-top(src='https://picsum.photos/200/300', alt='Sample image')
             .card-body
-                h5.card-title Art title
-                div.card-text Rs. 400
+                h5.card-title {{product.title}}
+                div.card-text Rs. {{product.price}}
+                div.card-text Quantity available - {{product.quantity_available}}
                 button.btn.btn-outline-primary.mt-3(type="button") Buy now
                 

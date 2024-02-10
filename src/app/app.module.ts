@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx
         AngularFirestoreModule,
         AngularFireAuthModule,
         HttpClientModule,
+        BrowserAnimationsModule,
     ],
     providers: [
         {

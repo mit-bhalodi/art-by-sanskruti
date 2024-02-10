@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { AuthGuard } from './guards/auth.guard';
-import { redirectUnauthorizedTo, redirectLoggedInTo, AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
-
-// const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-// const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
     {

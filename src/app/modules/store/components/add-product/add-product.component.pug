@@ -1,0 +1,21 @@
+h2(mat-dialog-title='') Add product
+
+mat-dialog-content([formGroup]="productAddForm")
+    
+    mat-form-field.width.w-100(appearance="outline", floatLabel="auto")
+        mat-label Product name
+        input(matInput, placeholder="Product name", formControlName="title")
+
+    mat-form-field.width.w-100(appearance="outline", floatLabel="auto")
+        mat-label Product description
+        input(matInput, placeholder="Product name", formControlName="description")
+
+    mat-form-field.width.w-100(appearance="outline", floatLabel="auto")
+        mat-label Product price
+        input(matInput, type="number", placeholder="Product name", formControlName="price")
+
+    mat-form-field.width.w-100(appearance="outline", floatLabel="auto")
+        mat-label Product quantity
+        input(matInput, type="number", placeholder="Product name", formControlName="quantity_available")
+
+button.btn.btn-primary((click)="saveDetails()") Save
