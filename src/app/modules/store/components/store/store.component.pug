@@ -1,7 +1,7 @@
 div.store-container.my-5
     div.section-title Oil painings
     
-    button.btn.btn-primary(*ngIf="isSuperUser", type="button", (click)="addProduct()") Add product
+    button.btn.btn-primary.margin.mt-4(*ngIf="isSuperUser", type="button", (click)="addProduct()") Add product
     
     div.product-wrapper.my-4
         .card(style='width: 20rem;', *ngFor="let product of products")

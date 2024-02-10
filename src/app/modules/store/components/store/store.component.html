@@ -1,7 +1,7 @@
 
 <div class="store-container my-5">
   <div class="section-title">Oil painings</div>
-  <button class="btn btn-primary" *ngIf="isSuperUser" type="button" (click)="addProduct()">Add product</button>
+  <button class="btn btn-primary margin mt-4" *ngIf="isSuperUser" type="button" (click)="addProduct()">Add product</button>
   <div class="product-wrapper my-4">
     <div class="card" style="width: 20rem;" *ngFor="let product of products">
       <div class="card-body">
