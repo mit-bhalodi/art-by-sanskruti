@@ -23,17 +23,8 @@ export class StoreComponent implements OnInit {
     public products: any = [];
 
     ngOnInit(): void {
-        this.authService
-            .getUser()
-            .pipe(take(1))
-            .subscribe(() => {
-                this.authService.isSuperUser$.pipe(take(1)).subscribe((isSuperUser) => {
-                    this.isSuperUser = isSuperUser;
-                    if (this.isSuperUser) {
-                        this.getProductList();
-                    }
-                });
-            });
+        this.authService.getUser().pipe(take(1)).subscribe();
+        this.getProductList();
     }
 
     addProduct() {
@@ -51,7 +42,7 @@ export class StoreComponent implements OnInit {
                     this.productService
                         .addProduct(response)
                         .pipe(take(1))
-                        .subscribe((response) => {
+                        .subscribe(() => {
                             this.getProductList();
                         });
                 }
