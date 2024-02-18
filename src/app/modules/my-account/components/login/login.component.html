@@ -9,7 +9,7 @@
             <label class="text-base">Password</label>
             <input class="form-control mt-1" formControlName="password" type="password" placeholder="Password" />
         </div>
-        <button class="my-3 w-full" mat-raised-button="mat-raised-button" color="primary"
-            [disabled]="loginForm?.invalid" (click)="login()">Login</button>
+        <button class="my-3 w-full" mat-raised-button="mat-raised-button" color="primary" [disabled]="loginForm.invalid"
+            (click)="login()">Login</button>
     </form>
 </div>
