@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, of, switchMap } from 'rxjs';
+import { BehaviorSubject, map, of, switchMap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
