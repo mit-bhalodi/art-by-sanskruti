@@ -6,9 +6,20 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [StoreComponent, AddProductComponent],
-    imports: [CommonModule, StoreRoutingModule, MatDialogModule, MatInputModule, ReactiveFormsModule, FormsModule],
+    imports: [
+        CommonModule,
+        StoreRoutingModule,
+        MatDialogModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+    ],
 })
 export class StoreModule {}

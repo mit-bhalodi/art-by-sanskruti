@@ -31,7 +31,7 @@ export class ResetPasswordComponent implements OnInit {
             .resetPassword(sendJSON)
             .pipe(take(1))
             .subscribe(() => {
-                this.router.navigate(['/auth/login']);
+                this.router.navigate(['/my-account/login']);
             });
     }
 }

@@ -18,7 +18,7 @@ export class ProductService {
     }
 
     public getProducts() {
-        return this.http.post<any>(`${environment.api}/get-products`, {}, { withCredentials: true }).pipe(
+        return this.http.get<any>(`${environment.api}/get-products`).pipe(
             switchMap((response: any) => {
                 return of(response);
             })

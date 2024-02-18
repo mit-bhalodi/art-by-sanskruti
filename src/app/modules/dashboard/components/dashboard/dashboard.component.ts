@@ -9,7 +9,5 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 export class DashboardComponent implements OnInit {
     constructor(private authService: AuthService) {}
 
-    ngOnInit(): void {
-        this.authService.getUser().pipe(take(1)).subscribe();
-    }
+    ngOnInit(): void {}
 }

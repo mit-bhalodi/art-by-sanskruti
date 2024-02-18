@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
-import { HttpClient } from '@angular/common/http';
-import { take, pipe } from 'rxjs';
+import { take } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +16,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm = new FormGroup({
             first_name: new FormControl('', Validators.required),
             last_name: new FormControl('', Validators.required),
-            email: new FormControl('', Validators.required),
+            email: new FormControl('', [Validators.required, Validators.email]),
             password: new FormControl('', Validators.required),
             password_confirm: new FormControl('', Validators.required),
         });
@@ -31,7 +30,7 @@ export class RegisterComponent implements OnInit {
                 .registerUser(this.registerForm?.getRawValue())
                 .pipe(take(1))
                 .subscribe(() => {
-                    this.router.navigate(['auth/login']);
+                    this.router.navigate(['/my-account/login']);
                 });
         }
     }

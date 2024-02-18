@@ -20,10 +20,11 @@ export class StoreComponent implements OnInit {
 
     public isSuperUser = false;
 
+    public itemsLoading = false;
+
     public products: any = [];
 
     ngOnInit(): void {
-        this.authService.getUser().pipe(take(1)).subscribe();
         this.getProductList();
     }
 
@@ -50,11 +51,13 @@ export class StoreComponent implements OnInit {
     }
 
     getProductList() {
+        this.itemsLoading = true;
         this.productService
             .getProducts()
             .pipe(take(1))
             .subscribe((response) => {
                 this.products = response;
+                this.itemsLoading = false;
             });
     }
 }

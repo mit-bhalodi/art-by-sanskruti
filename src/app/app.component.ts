@@ -9,8 +9,6 @@ import { Observable, Subscription, take } from 'rxjs';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-    public user: any;
-
     private allSubList = new Subscription();
 
     public isAuthenticated$!: Observable<any>;
@@ -18,19 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
     constructor(public authService: AuthService, private router: Router) {}
 
     ngOnInit(): void {
-        // const userSub = this.auth.loggedInUser$.subscribe((user) => {
-        //     this.user = user;
-        // });
-        // this.allSubList.add(userSub);
         this.isAuthenticated$ = this.authService.isAuthenticated$;
-    }
-
-    public goToLogin() {
-        this.router.navigate(['auth/login']);
-    }
-
-    public goToRegister() {
-        this.router.navigate(['auth/register']);
     }
 
     public goToStore() {
@@ -41,17 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.router.navigate(['/home']);
     }
 
-    public logOut() {
-        this.authService
-            .logOutUser()
-            .pipe(take(1))
-            .subscribe(() => {
-                this.router.navigate(['/auth/login']);
-            });
-    }
-
-    public scroll(el: HTMLElement) {
-        el.scrollIntoView();
+    public goToMyAccount() {
+        this.router.navigate(['/my-account']);
     }
 
     ngOnDestroy(): void {
