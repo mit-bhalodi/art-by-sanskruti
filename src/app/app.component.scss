@@ -1,14 +1,4 @@
-.router-outlet {
-    height: 100%;
-    width: 100%;
-    margin: 0 50px;
-}
-
-.nav-logo {
-    font-family: "DM Serif Text", serif;
-    font-size: 24px;
-
-    .logo-name-highlight {
-        color: rgb(144, 164, 237);
-    }
+:host {
+    display: block;
+    height: 100vh;
 }

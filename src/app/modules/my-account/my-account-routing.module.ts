@@ -4,26 +4,15 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 const routes: Routes = [
     {
         path: '',
         children: [
             {
-                path: 'login',
-                component: LoginComponent,
-            },
-            {
-                path: 'register',
-                component: RegisterComponent,
-            },
-            {
-                path: 'forgot',
-                component: ForgotPasswordComponent,
-            },
-            {
-                path: 'reset/:token',
-                component: ResetPasswordComponent,
+                path: '',
+                component: MyAccountComponent,
             },
         ],
     },
@@ -34,4 +23,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class AuthRoutingModule {}
+export class MyAccountRoutingModule {}
