@@ -1,4 +1,4 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+// import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,9 +13,7 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 export class LoginComponent implements OnInit {
     loginForm!: FormGroup;
 
-    // user!: SocialUser;
-
-    constructor(public authService: AuthService, private router: Router, private socialAuthService: SocialAuthService) {
+    constructor(public authService: AuthService, private router: Router) {
         this.loginForm = new FormGroup({
             email: new FormControl(''),
             password: new FormControl(''),

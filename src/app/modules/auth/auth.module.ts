@@ -6,10 +6,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { SocialLoginModule } from '@abacritt/angularx-social-login';
+// import { SocialLoginModule } from '@abacritt/angularx-social-login';
 
 @NgModule({
     declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswordComponent],
-    imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, SocialLoginModule],
+    imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
 })
 export class AuthModule {}

@@ -1,4 +1,4 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+// import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -23,22 +23,11 @@ export class AuthService {
         return this.accessToken;
     }
 
-    private _userSubject = new BehaviorSubject<SocialUser | null>(null);
+    private _userSubject = new BehaviorSubject<any | null>(null);
 
     public user$ = this._userSubject.asObservable();
 
-    constructor(private http: HttpClient, private socialAuthService: SocialAuthService, private router: Router) {
-        this.socialAuthService.authState.pipe().subscribe((user) => {
-            this._userSubject.next(user);
-            this.googleLogin({ 'token': user.idToken }).subscribe((response) => {
-                if (response.success === true) {
-                    this.router.navigate(['/home']);
-                } else {
-                    this.router.navigate(['/auth/login']);
-                }
-            });
-        });
-    }
+    constructor(private http: HttpClient, private router: Router) {}
 
     public registerUser(sendJSON: any) {
         return this.http.post<any>(`${environment.api}/register`, sendJSON).pipe(
