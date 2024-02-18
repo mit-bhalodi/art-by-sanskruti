@@ -3,26 +3,27 @@
         <h1 class="font-bold text-xl my-2">Please Register</h1>
         <div class="mt-2 flex flex-col gap-2">
             <label class="text-base">Email address</label>
-            <input class="form-control mt-2" formControlName="email" type="email" aria-describedby="emailHelp"
+            <input class="form-control mt-2 border border-gray-500 rounded-md" formControlName="email" type="email"
                 placeholder="Enter email" />
-            <div class="mt-2">
+            <div class="mt-2 flex flex-col">
                 <label class="text-base">First name</label>
-                <input class="form-control mt-2" formControlName="first_name" type="text"
-                    placeholder="Enter first name" />
+                <input class="form-control mt-2 border border-gray-500 rounded-md" formControlName="first_name"
+                    type="text" placeholder="Enter first name" />
             </div>
-            <div class="mt-2">
+            <div class="mt-2 flex flex-col">
                 <label class="text-base">Last name</label>
-                <input class="form-control mt-2" formControlName="last_name" type="text"
-                    placeholder="Enter last name" />
+                <input class="form-control mt-2 border border-gray-500 rounded-md" formControlName="last_name"
+                    type="text" placeholder="Enter last name" />
             </div>
-            <div class="mt-2">
+            <div class="mt-2 flex flex-col">
                 <label class="text-base">Password</label>
-                <input class="form-control mt-2 formControlName=" type="password" placeholder="Password" />
+                <input class="form-control mt-2 border border-gray-500 rounded-md" formControlName="password"
+                    type="password" placeholder="Password" />
             </div>
-            <div class="mt-2">
+            <div class="mt-2 flex flex-col">
                 <label class="text-base">Confirm password</label>
-                <input class="form-control mt-2" formControlName="password_confirm" type="password"
-                    placeholder="Confirm password" />
+                <input class="form-control mt-2 border border-gray-500 rounded-md" formControlName="password_confirm"
+                    type="password" placeholder="Confirm password" />
             </div>
             <button mat-raised-button="mat-raised-button" color="primary" class="btn btn-primary my-2 w-full"
                 type="submit" (click)="submitForm()" [disabled]="registerForm.invalid">Register</button>

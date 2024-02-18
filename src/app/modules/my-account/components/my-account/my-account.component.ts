@@ -24,8 +24,13 @@ export class MyAccountComponent implements OnInit {
         this.authService
             .getUser()
             .pipe(take(1))
-            .subscribe(() => {
-                this.isDataLoading = false;
+            .subscribe({
+                next: () => {
+                    this.isDataLoading = false;
+                },
+                error: () => {
+                    this.isDataLoading = false;
+                },
             });
     }
 
