@@ -1,9 +1,9 @@
-<div class="w-full h-full flex flex-col">
-    <div class="flex flex-col h-full gap-3">
+<div class="w-full flex flex-col">
+    <div class="flex flex-col gap-3">
 
         <!-- Large heading -->
-        <div class="flex items-center flex-col h-[300px] md:h-[400px] lg:h-[500px] justify-center text-center gap-3">
-            <div class="text-base lg:text-xl py-2">Hello, I am Sanskruti</div>
+        <div class="flex items-center flex-col h-[400px] md:h-[500px] lg:h-[600px] justify-center text-center gap-3">
+            <div class="text-base lg:text-2xl py-2">Hello, I am Sanskruti</div>
             <div class="text-3xl lg:text-6xl text-center">
                 <p>An artist that turns </p>
                 <p><span class="italic text-teal-400">curiosity </span><span>in </span>
@@ -13,13 +13,68 @@
         </div>
 
         <!-- About me -->
-        <div class="about-me" id="about_me" #about_me="">
-            <div>this is about me</div>
+        <div class="flex items-center flex-col lg:h-[600px] gap-3 mx-12 md:mx-32 lg:mx-52">
+            <div class="text-lg font-bold">About me</div>
+            <div class="flex flex-col md:flex-row gap-4 py-4">
+                <!-- Image section -->
+                <div class="w-full flex-auto">
+                    <img class="w-80 h-auto object-cover rounded-lg shadow-md hover:scale-95 duration-150"
+                        src="assets/my-image.jpeg" alt="sanskruti" loading="lazy">
+                </div>
+                <!-- About me section -->
+                <div class="flex-auto">
+                    <ul class="flex flex-col gap-3 text-sm md:text-base">
+                        <li>Currently pursuing a degree in Computer Science, with a passion for coding and
+                            technology.
+                        </li>
+                        <li>Proficient in digital design using tools like Procreate, mastering the art of
+                            creating
+                            captivating digital artwork.
+                        </li>
+                        <li>Specialized in digital design techniques, adept at bringing creative visions to life
+                            using a
+                            combination of software tools and artistic skills.
+                        </li>
+                        <li>Skilled in traditional art mediums such as oil painting and acrylic painting, with a
+                            focus on
+                            creating stunning wall art pieces.
+                        </li>
+                        <li>Combining the analytical mindset of a computer science student with the creative
+                            flair of an
+                            indie artist and designer to develop innovative and visually striking projects.
+                        </li>
+                        <li>Thriving at the intersection of technology and art, exploring ways to integrate
+                            digital tools
+                            with traditional artistic techniques to push the boundaries of creativity.
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- My services -->
-        <div class="my-services" id="my_services" #my_services="">
-            <div>My services</div>
+        <div class="flex items-center flex-col lg:h-[500px] gap-3 mx-12 md:mx-32 lg:mx-52">
+            <p class="text-lg font-bold">My services</p>
+
+            <!-- Service 1 -->
+            <div class="flex flex-col md:flex-row my-4 items-start justify-center gap-4">
+                <img class="w-72 h-auto object-cover rounded-md shadow-md" src="assets/procrate-poster.webp"
+                    alt="Procreate" />
+                <div class="flex flex-col gap-2 py-2">
+                    <p class="text-base font-bold">Art using Procreate</p>
+                    <p>Skilled digital artist proficient in Procreate.</p>
+                    <p>Offers diverse services including illustration and graphic design.</p>
+                    <p>Collaborative approach to deliver personalized creations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact me -->
+        <div class="flex items-center flex-col justify-center h-[100px] gap-3 bg-gray-200 my-4">
+            <p class="text-lg font-bold">Contact me</p>
+            <div class="flex items-center flex-row gap-3 mx-12 md:mx-32 lg:mx-52 my-2">
+                <a href="https://instagram.com/sanskruti_36" class="hover:text-pink-500 duration-150">Instagram</a>
+                <a href="https://www.youtube.com/@Sanskruti_36" class="hover:text-red-500 duration-150">YouTube</a>
+            </div>
         </div>
     </div>
-</div>

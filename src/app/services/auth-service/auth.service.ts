@@ -63,7 +63,7 @@ export class AuthService {
         return this.http.get<any>(`${environment.api}/user`).pipe(
             switchMap((response) => {
                 if (response.status === true) {
-                    this.isSuperUser.next(true);
+                    this.isSuperUser.next(response?.data?.is_superuser || false);
                     this.isAuthenticated.next(true);
                 } else {
                     this.isAuthenticated.next(false);
