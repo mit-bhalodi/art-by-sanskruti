@@ -1,30 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
-import * as $ from 'jquery';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { ProductService } from 'src/app/services/product/product.service';
+import { WindowRefService } from 'src/app/services/utility/window-ref.service';
+import { AddUserDataComponent } from '../add-user-data/add-user-data.component';
 
 @Component({
     selector: 'app-store',
     templateUrl: './store.component.html',
     styleUrls: ['./store.component.scss'],
+    providers: [WindowRefService],
 })
 export class StoreComponent implements OnInit {
     constructor(
-        private authService: AuthService,
         private matDialog: MatDialog,
-        private productService: ProductService
+        private productService: ProductService,
+        private winRef: WindowRefService,
+        private authService: AuthService
     ) {}
 
-    public isSuperUser = false;
+    public isSuperUser$ = this.authService.isSuperUser$;
 
     public itemsLoading = false;
 
     public products: any = [];
 
+    public userData: any = {};
+
     ngOnInit(): void {
+        this.authService.getUser().pipe(take(1)).subscribe();
         this.getProductList();
     }
 
@@ -58,6 +64,48 @@ export class StoreComponent implements OnInit {
             .subscribe((response) => {
                 this.products = response;
                 this.itemsLoading = false;
+            });
+    }
+
+    onClickBuyNow(product: any) {
+        const matDialogRef: MatDialogRef<AddUserDataComponent> = this.matDialog.open(AddUserDataComponent, {
+            disableClose: false,
+            autoFocus: false,
+            panelClass: 'fix-max-width-dbox-712',
+        });
+        matDialogRef
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe((response) => {
+                if (response) {
+                    this.userData = response;
+                    this.productService
+                        .startPayment(product.product_id)
+                        .pipe(take(1))
+                        .subscribe((response) => {
+                            const options = {
+                                key: 'rzp_test_H0k0zI3eBeHwT1',
+                                amount: '',
+                                currency: 'INR',
+                                name: 'Ary By Sanskruti',
+                                order_id: response.order_id,
+                                handler: this.paymentResponseHandler.bind(this),
+                                theme: { color: '#3399cc' },
+                            };
+                            const rzp = new this.winRef.nativeWindow.Razorpay(options);
+                            rzp.open();
+                        });
+                }
+            });
+    }
+
+    private paymentResponseHandler(data: any) {
+        const combinedData = Object.assign(data, this.userData);
+        this.productService
+            .verifyPayment(combinedData)
+            .pipe(take(1))
+            .subscribe((response) => {
+                console.log('verify payment ->', response);
             });
     }
 }

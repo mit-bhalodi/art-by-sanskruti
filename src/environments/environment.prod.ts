@@ -1,4 +1,5 @@
 export const environment = {
-    production: true,
-    api: 'https://art-by-sanskruti-backend-production.up.railway.app/api',
-};
+        RAZOR_PAY_API_KEY: 'sdfsfs',
+        production: true,
+        api: 'https://localhost:8000/api'
+    };

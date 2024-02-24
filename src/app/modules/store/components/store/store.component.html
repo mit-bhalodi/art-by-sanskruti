@@ -13,7 +13,8 @@
         <div class="test-base lg:text-xl font-semibold">Oil painings</div>
 
         <!-- Add actuon -->
-        <button *ngIf="isSuperUser" mat-flat-button color="primary" type="button" (click)="addProduct()">Add
+        <button class="w-40" *ngIf="(isSuperUser$ | async)" mat-flat-button color="primary" type="button"
+            (click)="addProduct()">Add
             product</button>
 
         <!-- product listing -->
@@ -22,7 +23,8 @@
                 <h5 class="text-base lg:text-xl font-semibold">{{product.title}}</h5>
                 <div class="text-base py-1">Rs. {{product.price}}</div>
                 <div class="card-text text-gray-600 py-1">Quantity available - {{product.quantity_available}}</div>
-                <button class="btn btn-outline-primary mt-3" type="button">Buy now</button>
+                <button class="btn btn-outline-primary mt-3" type="button" mat-raised-button="mat-raised-button"
+                    color="primary" (click)="onClickBuyNow(product)">Buy now</button>
             </div>
         </div>
     </ng-container>

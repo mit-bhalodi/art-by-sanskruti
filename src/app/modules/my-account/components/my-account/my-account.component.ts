@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
     selector: 'app-my-account',
@@ -15,7 +16,9 @@ export class MyAccountComponent implements OnInit {
 
     public isDataLoading = false;
 
-    constructor(private authService: AuthService, private router: Router) {
+    public orders: any = [];
+
+    constructor(private authService: AuthService, private productService: ProductService) {
         this.isAuthenticated$ = this.authService.isAuthenticated$;
     }
 
@@ -27,10 +30,20 @@ export class MyAccountComponent implements OnInit {
             .subscribe({
                 next: () => {
                     this.isDataLoading = false;
+                    this.fetchOrders();
                 },
                 error: () => {
                     this.isDataLoading = false;
                 },
+            });
+    }
+
+    public fetchOrders() {
+        this.productService
+            .fetchOrders()
+            .pipe(take(1))
+            .subscribe((response) => {
+                this.orders = response?.orders;
             });
     }
 

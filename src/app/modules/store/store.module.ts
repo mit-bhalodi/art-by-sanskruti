@@ -8,9 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AddUserDataComponent } from './components/add-user-data/add-user-data.component';
 
 @NgModule({
-    declarations: [StoreComponent, AddProductComponent],
+    declarations: [StoreComponent, AddProductComponent, AddUserDataComponent],
     imports: [
         CommonModule,
         StoreRoutingModule,

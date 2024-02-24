@@ -4,9 +4,10 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
+        "build": "npm run config && ng build",
         "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "test": "ng test",
+        "config": "npx ts-node src/environments/set-env.ts"
     },
     "private": true,
     "dependencies": {
@@ -22,7 +23,9 @@
         "@angular/platform-browser-dynamic": "^14.0.0",
         "@angular/router": "^14.0.0",
         "@popperjs/core": "^2.10.2",
+        "@types/node": "^20.11.20",
         "jquery": "^3.7.1",
+        "razorpay": "^2.9.2",
         "rxjs": "~7.5.0",
         "save": "^2.9.0",
         "tslib": "^2.3.0",
@@ -35,6 +38,7 @@
         "@types/jasmine": "~4.0.0",
         "@types/jquery": "^3.5.29",
         "autoprefixer": "^10.4.17",
+        "dotenv": "^16.4.5",
         "jasmine-core": "~4.1.0",
         "karma": "~6.3.0",
         "karma-chrome-launcher": "~3.1.0",

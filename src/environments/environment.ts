@@ -1,4 +1,5 @@
 export const environment = {
-    production: false,
-    api: 'http://localhost:8000/api',
-};
+        RAZOR_PAY_API_KEY: 'sdfsfs',
+        production: false,
+        api: 'http://localhost:8000/api',
+    };
